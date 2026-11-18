@@ -1,0 +1,7 @@
+# The paired 20261118 vendor_boot supplies the PJA110 display and touch modules.
+on init
+    setprop ro.recovery.device pja110
+    setprop ro.recovery.vendor_boot.required 1
+
+on property:sys.boot_completed=1
+    chmod 0666 /sys/class/backlight/panel0-backlight/brightness
