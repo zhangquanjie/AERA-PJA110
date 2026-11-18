@@ -26,7 +26,10 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
 BOARD_RAMDISK_USE_LZ4 := true
-TARGET_NO_KERNEL := true
+# AERA/AOSP 16 needs a kernel target in order to create the recovery-image
+# build rules. The PJA110 recovery header deliberately excludes it below; the
+# running GKI continues to come from boot and the paired vendor_boot.
+TARGET_PREBUILT_KERNEL := kernel/prebuilts/6.6/arm64/kernel-6.6
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 BOARD_FLASH_BLOCK_SIZE := 262144
